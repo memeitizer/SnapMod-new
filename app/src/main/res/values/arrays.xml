@@ -93,6 +93,7 @@
         <item>Images/Videos</item>
         <item>Snaps</item>
         <item>Notes</item>
+        <item>Shared</item>
     </string-array>
 
     <string-array name="auto_save_types_values">
@@ -101,6 +102,7 @@
         <item>EXTERNAL_MEDIA</item>
         <item>SNAP</item>
         <item>NOTE</item>
+        <item>SHARE</item>
     </string-array>
 
     <string-array name="chat_options">

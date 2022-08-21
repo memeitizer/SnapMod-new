@@ -5,7 +5,6 @@ import xyz.rodit.snapmod.features.FeatureContext
 import xyz.rodit.snapmod.logging.log
 import xyz.rodit.snapmod.mappings.ArroyoConvertMessagesAction
 import xyz.rodit.snapmod.mappings.ChatCommandSource
-import xyz.rodit.snapmod.mappings.ChatContext
 import xyz.rodit.snapmod.mappings.Message
 import xyz.rodit.snapmod.util.*
 
