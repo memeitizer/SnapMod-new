@@ -5,6 +5,7 @@ import xyz.rodit.snapmod.features.FeatureContext
 import xyz.rodit.snapmod.logging.log
 import xyz.rodit.snapmod.mappings.ArroyoConvertMessagesAction
 import xyz.rodit.snapmod.mappings.ChatCommandSource
+import xyz.rodit.snapmod.mappings.ChatContext
 import xyz.rodit.snapmod.mappings.Message
 import xyz.rodit.snapmod.util.*
 
@@ -33,6 +34,9 @@ class AutoSave(context: FeatureContext) : Feature(context, 84608.toMax()) {
                 val descriptor = m.descriptor
                 val conversationId = descriptor.conversationId.toUUIDString()
 
+                if(context.dont_autoSave.isEnabled(conversationId))
+                    return@forEach
+
                 if (!context.config.getBoolean("auto_save_all_chats")
                     && !context.autoSave.isEnabled(conversationId)
                 ) return@forEach
@@ -45,8 +49,10 @@ class AutoSave(context: FeatureContext) : Feature(context, 84608.toMax()) {
 
                 val arroyoId = createArroyoId(conversationId, descriptor.messageId)
                 context.instances.chatCommandsClient.saveMessage(
+                    null,
                     arroyoId,
                     true,
+                    false,
                     ChatCommandSource.CHAT(),
                     false
                 )

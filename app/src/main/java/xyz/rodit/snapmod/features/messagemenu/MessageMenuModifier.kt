@@ -13,7 +13,7 @@ class MessageMenuModifier(context: FeatureContext) : Feature(context) {
     private val plugins: MutableList<MenuPlugin> = mutableListOf()
 
     override fun init() {
-        plugins.add(AudioSpeedModifier(context))
+
     }
 
     override fun performHooks() {

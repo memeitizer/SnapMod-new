@@ -84,7 +84,6 @@ class ChatSaving(context: FeatureContext) : Feature(context) {
                         null,
                         base.status,
                         true,
-                        true
                     ).instance
                 }
                 ChatModelAudioNote.isInstance(it.args[2]) -> {

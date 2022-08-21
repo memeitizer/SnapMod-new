@@ -7,6 +7,7 @@ import xyz.rodit.snapmod.mappings.NotificationHandler
 import xyz.rodit.snapmod.util.before
 import xyz.rodit.snapmod.util.getList
 import xyz.rodit.snapmod.util.toMax
+import xyz.rodit.snapmod.logging.log
 
 class FilterTypes(context: FeatureContext) : Feature(context, 84608.toMax()) {
 
@@ -27,6 +28,7 @@ class FilterTypes(context: FeatureContext) : Feature(context, 84608.toMax()) {
 
             val type =
                 bundle.getString("type") ?: bundle.getString("n_key")?.split('~')?.get(0) ?: ""
+            log.debug(type)
             if (hiddenTypes.contains(type.lowercase())) {
                 it.result = null
             }
