@@ -39,7 +39,7 @@ private fun displayPreview(context: FeatureContext, param: XC_MethodHook.MethodH
     if (messageList.isEmpty()) previewText.append("No messages available.")
     else {
         val numMessages =
-            Integer.min(context.config.getInt("preview_messages_count", 5), messageList.size)
+            Integer.min(context.config.getInt("preview_messages_count", 20), messageList.size)
         previewText.append("Last ").append(numMessages).append(" messages:")
         messageList.takeLast(numMessages)
             .map(Message::wrap).forEach { m ->

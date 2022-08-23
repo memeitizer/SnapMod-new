@@ -124,6 +124,7 @@
         <item>STICKER</item>
         <item>EXTERNAL_MEDIA</item>
         <item>NOTE</item>
+        <item>SHARE</item>
     </string-array>
 
     <string-array name="default_resolutions">

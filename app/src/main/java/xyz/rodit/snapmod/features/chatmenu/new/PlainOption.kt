@@ -17,6 +17,7 @@ class PlainOption(
 
     override fun createModel(key: String): Any = ActionPlain(
         text,
+        0,
         Func0.wrap(Func0.getMappedClass().createDelegate(context.classLoader) { _, _ ->
             click(key)
         })

@@ -144,7 +144,6 @@ class PresenceSession expects com.snapchat.talkcorev3.PresenceSession$CppProxy {
 class NetworkApi expects com.snapchat.client.network_api.NetworkApi$CppProxy {
 
     void $submit(...)
-    void $submitToNetworkManagerDirectly(...)
 }
 
 [certain]
@@ -467,12 +466,10 @@ class ChatModelSavedSnap {
     !MediaType mediaType;
     [discard] Uri u0;
     [discard] Uri u1;
-    !LiveSnapMedia media;
 
     void $<init>(Context, !MessageDataModel, String, Map, boolean, ChatReactionsBelowMessageViewModel, boolean, int, int, !LiveSnapMedia, String, ...) {
         .field !ChatLayouts->!SAVED_SNAP;
         .method TimeUnit->toMillis;
-        .method Double->isNaN;
         .method Context->getResources;
     }
 }
@@ -483,7 +480,7 @@ class ChatModelAudioNote extends !ChatModelBase {
     [discard] java.lang.String s1;
     [discard] boolean b0;
 
-    void $<init>(Context, !ChatLayouts, !MessageDataModel, *, java.lang.String, java.util.Map, boolean, ...)
+    void $<init>(Context, !MessageDataModel, *, java.lang.String, java.util.Map, boolean, ...)
 
     Uri getUri()
 }
@@ -1469,7 +1466,7 @@ class ArroyoMessageListDataProvider {
     }
 }
 
-[late]
+[certain]
 class ExportItem {
 
     String fileName;
@@ -1488,32 +1485,34 @@ class MediaExportControllerImpl {
         .string "MediaExportControllerImpl";
     }
 
-    Uri exportMedia(*, *, #ExportItem, ...) {
-        .string "mime_type";
+    Uri exportMedia(*,*,*) {
         .string "_display_name";
+        .string "mime_type";
         .string "_size";
+        .string "date_modified";
     }
 }
+
 
 [late, discard, exact]
 class NanoChatMessageArrayType {
     static this[] ta0;
-    * o0;
     int i0;
     * o1;
+    * o0;
 
     void $<init>(...)
 
-    int $computeSerializedSize()
-
     * m0()
     boolean m1()
+
+    int $computeSerializedSize()
 
     MessageNano $mergeFrom(*)
     void $writeTo(*)
 }
 
-[certain, exact]
+[certain]
 class NanoChatMessageContent {
 
     [not] static *[] n0;
@@ -1582,7 +1581,6 @@ class FriendsRepository {
     }
 
     List selectFriendsByUserIds(List) {
-        .new !FriendRepositoryAction;
     }
 }
 
@@ -1628,26 +1626,6 @@ class ChatMessageActionBuilder {
     }
 }
 
-[certain]
-class AudioNotePlaySession {
-
-    double playbackSpeed;
-
-    void $<init>(...) {
-        .string "AudioNotePlaySession";
-    }
-}
-
-class AudioNoteViewBindingDelegate expects com.snap.messaging.chat.ui.viewbinding.delegate.AudioNoteViewBindingDelegate {
-
-    !AudioNotePlaySession session;
-
-    void bindSession(!ChatModelAudioNote, ...) {
-        .string "playbackSession";
-        .new !AudioNotePlaySession;
-    }
-}
-
 [certain, discard]
 class SendToControllerActionSendHandler {
 
@@ -1682,6 +1660,8 @@ enum ChatCommandSource {
     }
 }
 
+
+
 [certain]
 class ArroyoConvertMessagesAction {
 
@@ -1697,7 +1677,7 @@ class ArroyoChatCommandsClient {
         .string "ArroyoChatCommandsClient";
     }
 
-    void saveMessage(String, boolean, !ChatCommandSource, boolean) {
+    void saveMessage(*, String, boolean, boolean, !ChatCommandSource, boolean) {
         .string "ArroyoChatCommandsClient";
     }
 }
@@ -1962,7 +1942,7 @@ class ActionPlain {
 class NestedActionMenuContext {
 
     Context context;
-    !CompositeConfigurationProvider config;
+
 
     static void display(this, String, List)
 }
