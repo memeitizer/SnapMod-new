@@ -11,7 +11,7 @@ object CustomResources {
         string.menu_option_stealth_mode to "Stealth Mode",
         string.menu_option_preview to "Preview Conversation",
         string.menu_option_auto_save to "Auto-Save Messages",
-        string.menu_option_dont_auto_save to "Don't Auto-Save",
+        string.menu_option_anti_auto_save to "Anti Auto-Save",
         string.menu_option_auto_download to "Auto-Download Snaps",
         string.menu_option_export to "Export...",
 
@@ -50,7 +50,7 @@ object CustomResources {
         const val menu_option_auto_save = -100002
         const val menu_option_auto_download = -100003
         const val menu_option_export = -100004
-        const val menu_option_dont_auto_save = -100005
+        const val menu_option_anti_auto_save = -100005
 
         const val chat_action_playback_speed = -200000
 

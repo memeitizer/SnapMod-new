@@ -33,8 +33,9 @@ class AutoSave(context: FeatureContext) : Feature(context, 84608.toMax()) {
                 val descriptor = m.descriptor
                 val conversationId = descriptor.conversationId.toUUIDString()
 
-                if(context.dont_autoSave.isEnabled(conversationId))
+                if(context.anti_autoSave.isEnabled(conversationId) or context.stealth.isEnabled(conversationId))
                     return@forEach
+
 
                 if (!context.config.getBoolean("auto_save_all_chats")
                     && !context.autoSave.isEnabled(conversationId)

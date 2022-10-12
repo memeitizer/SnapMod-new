@@ -19,6 +19,7 @@ class NewChatMenuModifier(context: FeatureContext) : Feature(context) {
         registerSwitch("pinning", "Pin Conversation") { it.pinned }
         registerSwitch("stealth", "Stealth Mode") { it.stealth }
         registerSwitch("auto_save", "Auto-Save Messages") { it.autoSave }
+        registerSwitch("anti_auto_save", "Anti Auto-Save") { it.anti_autoSave }
         registerSwitch("auto_download", "Auto-Download Snaps") { it.autoDownload }
     }
 
@@ -46,6 +47,9 @@ class NewChatMenuModifier(context: FeatureContext) : Feature(context) {
 
             val newItems = (it.args[0] as List<*>).toMutableList()
             val creator = ProfileActionSheetCreator.wrap(it.thisObject)
+            if (!NestedActionMenuContext.isInstance(creator.nestedContext)
+                || !ActionMenuContext.isInstance(creator.actionMenuContext)) return@before
+
             val nestedContext = NestedActionMenuContext.wrap(creator.nestedContext)
             val actionContext = ActionMenuContext.wrap(creator.actionMenuContext)
             val key = actionContext.feedInfo.key

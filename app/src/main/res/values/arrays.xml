@@ -109,6 +109,7 @@
         <item>Pin</item>
         <item>Stealth</item>
         <item>Auto Save</item>
+        <item>Anti Auto Save</item>
         <item>Auto Download Snaps</item>
     </string-array>
 
@@ -116,6 +117,7 @@
         <item>pinning</item>
         <item>stealth</item>
         <item>auto_save</item>
+        <item>anti_auto_save</item>
         <item>auto_download</item>
     </string-array>
 
