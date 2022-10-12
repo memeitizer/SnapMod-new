@@ -144,7 +144,6 @@ class PresenceSession expects com.snapchat.talkcorev3.PresenceSession$CppProxy {
 class NetworkApi expects com.snapchat.client.network_api.NetworkApi$CppProxy {
 
     void $submit(...)
-    void $submitToNetworkManagerDirectly(...)
 }
 
 [certain]

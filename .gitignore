@@ -18,3 +18,4 @@ gradle.properties
 /keystore.jks
 /.idea/codeStyles/codeStyleConfig.xml
 /.idea/codeStyles/Project.xml
+settings.gradle
