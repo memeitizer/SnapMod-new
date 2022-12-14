@@ -45,12 +45,18 @@
         <item>Chats</item>
         <item>Snaps</item>
         <item>Typing</item>
+        <item>Replay</item>
+        <item>Saved Snap</item>
+        <item>Screenshot</item>
     </string-array>
 
     <string-array name="notification_types_values">
         <item>chat</item>
         <item>snap</item>
         <item>typing</item>
+        <item>replay</item>
+        <item>snap_save</item>
+        <item>chat_screenshot</item>
     </string-array>
 
     <string-array name="log_levels">
@@ -87,6 +93,7 @@
         <item>Images/Videos</item>
         <item>Snaps</item>
         <item>Notes</item>
+        <item>Shared</item>
     </string-array>
 
     <string-array name="auto_save_types_values">
@@ -95,12 +102,14 @@
         <item>EXTERNAL_MEDIA</item>
         <item>SNAP</item>
         <item>NOTE</item>
+        <item>SHARE</item>
     </string-array>
 
     <string-array name="chat_options">
         <item>Pin</item>
         <item>Stealth</item>
         <item>Auto Save</item>
+        <item>Anti Auto Save</item>
         <item>Auto Download Snaps</item>
     </string-array>
 
@@ -108,6 +117,7 @@
         <item>pinning</item>
         <item>stealth</item>
         <item>auto_save</item>
+        <item>anti_auto_save</item>
         <item>auto_download</item>
     </string-array>
 

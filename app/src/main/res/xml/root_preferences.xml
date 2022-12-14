@@ -45,6 +45,7 @@
             app:summary="@string/hide_typing_description"
             app:iconSpaceReserved="false" />
 
+        <!--
         <SwitchPreferenceCompat
             app:key="hide_friends"
             app:title="@string/hide_friends_title"
@@ -56,6 +57,13 @@
             app:title="@string/hidden_friends_title"
             app:dialogMessage="@string/hidden_friends_description"
             app:iconSpaceReserved="false" />
+        -->
+
+        <SwitchPreferenceCompat
+            app:key="hide_read"
+            app:title="@string/hide_read_title"
+            app:summary="@string/hide_read_description"
+            app:iconSpaceReserved="false"/>
 
         <SwitchPreferenceCompat
             app:key="hide_snap_views"
@@ -69,6 +77,7 @@
             app:summary="@string/hide_story_views_description"
             app:iconSpaceReserved="false" />
 
+
         <SwitchPreferenceCompat
             app:key="hide_story_views_local"
             app:title="@string/hide_story_views_local_title"
@@ -81,11 +90,7 @@
             app:summary="@string/disable_metrics_description"
             app:iconSpaceReserved="false" />
 
-        <SwitchPreferenceCompat
-            app:key="hide_read"
-            app:title="@string/hide_read_title"
-            app:summary="@string/hide_read_description"
-            app:iconSpaceReserved="false"/>
+
     </PreferenceCategory>
 
     <PreferenceCategory app:title="@string/tweaks_header"
@@ -129,13 +134,14 @@
             app:summary="@string/preview_messages_count_description"
             app:iconSpaceReserved="false"
             app:defaultValue="5" />
-
+        <!--
         <EditTextPreference
             app:key="audio_playback_speed"
             app:title="@string/audio_playback_speed_title"
             app:summary="@string/audio_playback_speed_description"
             app:iconSpaceReserved="false"
             app:defaultValue="1.0" />
+            -->
 
         <SwitchPreferenceCompat
             app:key="auto_save_all_chats"
@@ -169,13 +175,14 @@
             app:title="@string/enable_new_voice_notes_title"
             app:summary="@string/enable_new_voice_notes_description"
             app:iconSpaceReserved="false" />
-
+        <!--
         <SwitchPreferenceCompat
             app:key="enable_new_chat_menu"
             app:title="@string/enable_new_chat_menu_title"
             app:summary="@string/enable_new_chat_menu_description"
             app:defaultValue="true"
             app:iconSpaceReserved="false" />
+        -->
 
         <MultiSelectListPreference
             app:key="hidden_chat_options"

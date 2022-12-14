@@ -44,7 +44,7 @@ class SettingsActivity : SettingsActivity(R.xml.root_preferences) {
     }
 
     private fun performUpdateCheck() {
-        updates.checkForUpdates("rodit", "SnapMod")
+        updates.checkForUpdates("RevealedSoulEven", "SnapMod-new")
     }
 
     override fun onCreatePreferences(fragment: SettingsFragment) {

@@ -19,6 +19,7 @@ class NewChatMenuModifier(context: FeatureContext) : Feature(context) {
         registerSwitch("pinning", "Pin Conversation") { it.pinned }
         registerSwitch("stealth", "Stealth Mode") { it.stealth }
         registerSwitch("auto_save", "Auto-Save Messages") { it.autoSave }
+        registerSwitch("anti_auto_save", "Anti Auto-Save") { it.anti_autoSave }
         registerSwitch("auto_download", "Auto-Download Snaps") { it.autoDownload }
     }
 
@@ -36,9 +37,7 @@ class NewChatMenuModifier(context: FeatureContext) : Feature(context) {
 
     override fun performHooks() {
         // Force new chat action menu
-        ProfileActionSheetChooser.choose.before {
-            it.args[0] = true
-        }
+
 
         // Add subsection
         ProfileActionSheetCreator.apply.before {

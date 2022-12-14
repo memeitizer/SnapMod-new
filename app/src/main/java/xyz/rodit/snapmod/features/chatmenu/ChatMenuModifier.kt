@@ -3,6 +3,7 @@ package xyz.rodit.snapmod.features.chatmenu
 import xyz.rodit.snapmod.CustomResources.string.menu_option_auto_download
 import xyz.rodit.snapmod.CustomResources.string.menu_option_auto_save
 import xyz.rodit.snapmod.CustomResources.string.menu_option_stealth_mode
+import xyz.rodit.snapmod.CustomResources.string.menu_option_anti_auto_save
 import xyz.rodit.snapmod.Shared
 import xyz.rodit.snapmod.features.Feature
 import xyz.rodit.snapmod.features.FeatureContext
@@ -33,6 +34,7 @@ class ChatMenuModifier(context: FeatureContext) : Feature(context) {
         registerConversationToggle("pinning", pinTextResource) { it.pinned }
         registerConversationToggle("stealth", menu_option_stealth_mode) { it.stealth }
         registerConversationToggle("auto_save", menu_option_auto_save) { it.autoSave }
+        registerConversationToggle("anti_auto_save", menu_option_anti_auto_save) { it.anti_autoSave }
         registerConversationToggle("auto_download", menu_option_auto_download) { it.autoDownload }
     }
 
