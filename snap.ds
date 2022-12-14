@@ -1736,21 +1736,6 @@ class NestedActionMenuContext {
     static void display(this, String, List)
 }
 
-[certain, obfuscated]
-enum ProfileActionSheetDisplay {
-
-    [late] static this .fields { ONLY_HEADER, NO_HEADER, DEFAULT }
-}
-
-[certain]
-class ProfileActionSheetChooser {
-
-    * choose(*) {
-        .field !ProfileActionSheetDisplay->!ONLY_HEADER;
-        .field !ProfileActionSheetDisplay->!DEFAULT;
-    }
-}
-
 
 [certain]
 class StoryKey {
