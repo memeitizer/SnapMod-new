@@ -11,6 +11,6 @@ class BypassVideoLength(context: FeatureContext) : Feature(context) {
         // Bypass video duration limit from gallery in chat.
         MemoriesPickerVideoDurationConfig.constructors.before(
             context, "bypass_video_length_restrictions"
-        ) { it.args[0] = Long.MAX_VALUE }
+        ) { it.args[1] = Long.MAX_VALUE; }
     }
 }

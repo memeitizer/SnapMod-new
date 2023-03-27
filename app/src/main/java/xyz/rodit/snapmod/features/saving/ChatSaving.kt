@@ -74,7 +74,7 @@ class ChatSaving(context: FeatureContext) : Feature(context) {
                         base.context,
                         base.messageData,
                         base.senderId,
-                        emptyMap<Any?, Any>(),
+                        linkedMapOf<Any, Any>(),
                         true,
                         null,
                         true,
@@ -83,7 +83,9 @@ class ChatSaving(context: FeatureContext) : Feature(context) {
                         media,
                         null,
                         base.status,
-                        true
+                        true,
+                        false,
+                        null
                     ).instance
                 }
                 ChatModelPlugin.isInstance(it.args[2]) -> {

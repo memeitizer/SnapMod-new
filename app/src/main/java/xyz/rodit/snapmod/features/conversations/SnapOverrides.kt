@@ -35,7 +35,10 @@ class SnapOverrides(context: FeatureContext) : Feature(context) {
                 null,
                 null,
                 null,
-                false
+                null,
+                false,
+                null,
+                0
             )
             snap.parameterPackage = paramPackage
             content.message = MediaBaseBase.wrap(snap.instance)

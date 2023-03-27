@@ -2,7 +2,7 @@ package xyz.rodit.snapmod.features.tweaks
 
 import xyz.rodit.snapmod.features.Feature
 import xyz.rodit.snapmod.features.FeatureContext
-import xyz.rodit.snapmod.mappings.CameraRollVideoLengthChecker
+import xyz.rodit.snapmod.mappings.CameraRollMediaId
 import xyz.rodit.snapmod.mappings.MediaPackage
 import xyz.rodit.snapmod.mappings.VideoLengthChecker
 import xyz.rodit.snapmod.util.after
@@ -28,11 +28,9 @@ class BypassVideoLengthGlobal(context: FeatureContext) : Feature(context, 84606.
             MediaPackage.wrap(it.args[0]).media.videoDurationMs = lastVideoDuration
         }
 
-        CameraRollVideoLengthChecker.isOver60Seconds.before(
-            context,
-            "bypass_video_length_restrictions"
-        ) {
-            it.result = false
+        CameraRollMediaId.constructors.after(context, "bypass_video_length_restrictions") {
+            val mediaId = CameraRollMediaId.wrap(it.thisObject)
+            mediaId.durationMs = 60000L
         }
     }
 }

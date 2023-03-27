@@ -35,6 +35,7 @@ import java.util.Collections;
 import java.util.concurrent.ConcurrentHashMap;
 import java.util.concurrent.TimeUnit;
 import java.util.List;
+import java.util.LinkedHashMap;
 import java.util.Map;
 import java.util.Set;
 import javax.crypto.Cipher;
@@ -436,7 +437,7 @@ class ChatModelLiveSnap extends #ChatModelWithMedia {
 
     [discard] boolean b0;
 
-    void $<init>(Context, *, *, *, *, !MessageDataModel, !LiveSnapMedia, String, Map, boolean, ...)
+    void $<init>(Context, *, *, *, !MessageDataModel, !LiveSnapMedia, String, LinkedHashMap, boolean, ...)
 
     [discard] boolean bm0(*)
     [discard] boolean bm1()
@@ -448,9 +449,8 @@ class ChatModelSavedSnap {
     [discard] Uri u0;
     [discard] Uri u1;
 
-    void $<init>(Context, !MessageDataModel, String, Map, boolean, *, boolean, int, int, !LiveSnapMedia, String, ...) {
+    void $<init>(Context, !MessageDataModel, String, LinkedHashMap, boolean, *, boolean, int, int, !LiveSnapMedia, String, ...) {
         .field !ChatLayouts->!SAVED_SNAP;
-        .method TimeUnit->toMillis;
         .method Context->getResources;
     }
 }
@@ -486,10 +486,22 @@ class FriendProfilePageData {
     }
 }
 
-[certain, obfuscated]
-enum ProfileSectionType {
 
-    [late] static this .fields { FOOTER_INFO_ITEM, IDENTITY_CAROUSEL }
+[certain, obfuscated, discard]
+enum ProfileSectionTypePrev {
+    [late] static this .fields { PROFILE_FOOTER_INFO_ITEM, PROFILE_IDENTITY_CAROUSEL }
+}
+
+[certain]
+enum ProfileSectionType {
+    static this .fields { FOOTER_INFO_ITEM, IDENTITY_CAROUSEL }
+
+    [discard] !ProfileSectionTypePrev prev;
+
+    static void $<clinit>() {
+        .string "FOOTER_INFO_ITEM";
+        .string "IDENTITY_CAROUSEL";
+    }
 }
 
 class FooterInfoItem {
@@ -499,6 +511,8 @@ class FooterInfoItem {
     void $<init>(String, long, ...) {
         .field !ProfileSectionType->!FOOTER_INFO_ITEM;
     }
+
+    [discard] boolean unk(...) {}
 }
 
 class FriendProfileTransformer {
@@ -507,7 +521,7 @@ class FriendProfileTransformer {
     Object section;
     Object data;
 
-    void $<init>(Object, Object, int)
+    void $<init>(int, Object, Object)
 
     * $apply(...) {
         .string "LOOK:ContentManagerResourceResolver#createall";
@@ -571,24 +585,6 @@ enum FriendAddMethod {
         ADDED_BY_SHARED_STORY,
         ADDED_BY_GROUP_CHAT
     }
-}
-
-[certain]
-class FriendActionRequest {
-
-    @com.google.gson.annotations.SerializedName("action")
-    java.lang.String action;
-    @com.google.gson.annotations.SerializedName("added_by")
-    java.lang.String addedBy;
-}
-
-class FriendActionClient {
-
-    void $<init>(...) {
-        .string "FriendActionClient";
-    }
-
-    * sendFriendAction(!FriendActionRequest)
 }
 
 [certain]
@@ -762,9 +758,9 @@ class MessageSenderCrossroad {
 
     [late] !MessagePayload payload;
 
-    void $<init>(!MessagePayload, !SendAndRecycleProcessor, ...) {
+    void $<init>(!SendAndRecycleProcessor, !MessagePayload) {
         [strict]
-        .expr this->* = .p0, bind field payload current reference;
+        .expr this->* = .p1, bind field payload current reference;
     }
 
     * $apply(*)
@@ -853,7 +849,7 @@ class StoryMediaPlaybackMode {
 class StoryMetadata extends !ParamsMap {
 
     [late] !MapKey overlayImageMediaInfo;
-    [late] !MapKey videoMediaInfo;
+    [late] !MapKey videoMediaInfoList;
     [late] !MapKey imageMediaInfo;
     [late] !MapKey actionMenuOptions;
     [late] !MapKey autoAdvanceMode;
@@ -863,7 +859,7 @@ class StoryMetadata extends !ParamsMap {
         [strict]
         .string "overlay_image_media_info", bind field overlayImageMediaInfo next reference;
         [strict]
-        .string "video_media_info", bind field videoMediaInfo next reference;
+        .string "video_media_info_list", bind field videoMediaInfoList next reference;
         [strict]
         .string "image_media_info", bind field imageMediaInfo next reference;
         [strict]
@@ -1100,11 +1096,11 @@ class FriendsFeedView {
 
     [late] String key;
     [late] String friendmojiCategories;
-    [late] Long lastInteractionTimestamp;
+    [late] long lastInteractionTimestamp;
     [late] Long pinnedTimestamp;
 
     String $toString() {
-        .string contains "FriendsFeedView";
+        .string contains "FriendsFeedViewV2";
         [strict]
         .string contains "key:", bind field key next reference;
         [strict]
@@ -1147,11 +1143,6 @@ class BasicFeedInfo {
     }
 }
 
-[late]
-class FeedInfoHolder extends #FeedInfoHolderBase {
-
-    !BasicFeedInfo info;
-}
 
 [certain]
 class FriendInfo {
@@ -1166,31 +1157,37 @@ class FriendInfo {
     }
 }
 
+[certain, discard]
+class BasicFeedInfoById {
+    [late] String key;
+
+    String $toString() {
+        .string contains "|GetBasicFeedInfo";
+        [strict]
+        .string contains "key:", bind field key next reference;
+    }
+}
+
+[certain]
+class FeedInfoHolder {
+    [discard]
+    * feedInfoById;
+
+    String feedKey;
+
+    [discard]
+    void $<init>(*) {
+        .field !BasicFeedInfoById->!key;
+    }
+}
+
 class FriendChatActionMenuBuilder {
 
-    #FeedInfoHolder feedInfoHolder;
-    [discard] !FriendInfo friendInfo;
+    Object feedInfoHolder;
 
-    #RxBase build() {
-        .method Collections->singletonList;
-        .new ArrayList;
+    * call() {
+        .string "up:fragment:createPresenter";
     }
-}
-
-[late]
-class RxBase {
-
-    static * singleton(Object) {
-        .string "item is null";
-        .method *->requireNonNull;
-        .new #RxSingleton;
-    }
-}
-
-[late]
-class RxSingleton {
-
-    Object value;
 }
 
 [certain]
@@ -1291,8 +1288,6 @@ class SettingsClickAction extends !ActionBase {
 }
 
 class FriendChatActionHandler {
-
-    [discard] !FeedInfoHolderBase info;
 
     void handle(!ActionBase) {
         .type !SettingsClickAction;
@@ -1396,6 +1391,10 @@ class ArroyoMessageListDataProvider {
     * enterConversation(!ChatContext, ...) {
         .string "NativeSessionWrapper:enterConversation";
     }
+
+    * apply(List, ...) {
+        .string "ArroyoMessageListDataProvider:convertMessagesInternal";
+    }
 }
 
 [late]
@@ -1478,19 +1477,6 @@ class SelectFriendsByUserIdsCaller {
     }
 }
 
-[certain, discard]
-class FriendRepositorySqlActions {
-
-    * func0(...) {
-        .string "Friend.sq";
-        .string "countMutualFriends";
-    }
-
-    * observeSelectFriendsByUserIds(Collection) {
-        .field !SelectFriendsByUserIdsCaller->!INSTANCE;
-    }
-}
-
 [certain]
 class FriendsRepository {
 
@@ -1499,7 +1485,6 @@ class FriendsRepository {
     }
 
     List selectFriendsByUserIds(List) {
-        .method !FriendRepositorySqlActions->!observeSelectFriendsByUserIds;
     }
 }
 
@@ -1534,14 +1519,6 @@ enum ChatCommandSource {
         [discard] PUBLIC_PROFILE,
         [discard] STORY,
         [discard] PROFILE_GALLERY_PLAYBACK
-    }
-}
-
-[certain]
-class ArroyoConvertMessagesAction {
-
-    * $apply(Object) {
-        .string "ArroyoMessageListDataProvider:convertMessages";
     }
 }
 
@@ -1593,12 +1570,12 @@ class AesCrypto {
     void $<init>(String, String, ...)
     void $<init>(byte[], byte[])
 
-    Cipher getCipher() {
+    InputStream encrypt(InputStream) {
         .string "AES/CBC/PKCS5Padding";
     }
-
-    InputStream encrypt(InputStream)
-    InputStream decrypt(InputStream)
+    InputStream decrypt(InputStream) {
+        .string "AES/CBC/PKCS5Padding";
+    }
 }
 
 [certain]
@@ -1640,45 +1617,30 @@ class OperaPageViewController {
 
 [certain]
 class CameraRollMediaId extends #CameraRollMediaBase {
+    [late] long durationMs;
+
+    void $<init>(String, long, String, Boolean) {}
 
     String $toString() {
         .string "CameraRollMediaId(mediaId=";
-        .string ", durationMs=";
+        .string ", durationMs=", bind field durationMs next reference;
     }
 }
-
-[certain]
-class CameraRollVideoLengthChecker {
-
-    static boolean isOver60Seconds(!CameraRollMediaBase) {
-        .const 60000;
-    }
-}
-
-
 
 [certain, conserve]
 class ProfileActionSheetCreator {
 
-
-    Object actionMenuContext;
     Object nestedContext;
+    Object actionMenuContext;
 
     * apply(*) {
         .string "Notification not supported for ";
     }
 }
 
-[certain, obfuscated]
-enum ActionSheetType {
-
-    [late] static this .fields { PROFILE, PROFILE_ACTION_MENU }
-}
-
 [certain]
 class ActionMenuContext {
 
-    !ActionSheetType sheetType;
     !FriendInfo friendInfo;
     !BasicFeedInfo feedInfo;
 }

@@ -11,6 +11,9 @@ import java.lang.reflect.Proxy
 class PinStories(context: FeatureContext) : Feature(context) {
 
     override fun performHooks() {
+        //TODO: StoryViewModel Mapping
+
+        /*
         DfSectionControllerActions.apply.before {
             if (!DfSectionController.isInstance(DfSectionControllerActions.wrap(it.thisObject).sectionController)) return@before
 
@@ -45,5 +48,6 @@ class PinStories(context: FeatureContext) : Feature(context) {
 
             data.dataModels = SnapIterable.wrap(iterableProxy)
         }
+         */
     }
 }

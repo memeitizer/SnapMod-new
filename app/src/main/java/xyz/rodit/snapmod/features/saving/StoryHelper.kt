@@ -73,7 +73,7 @@ fun getMediaInfo(
             return@getUsername callback(StoryMedia(OperaMediaInfo.wrap(it), username, ".jpg", map))
         }
 
-        map[StoryMetadata.getVideoMediaInfo().instance]?.let {
+        map[StoryMetadata.getVideoMediaInfoList().instance]?.let {
             mLog.debug("Found video media info for story.")
             return@getUsername callback(StoryMedia(OperaMediaInfo.wrap(it), username, ".mp4", map))
         }

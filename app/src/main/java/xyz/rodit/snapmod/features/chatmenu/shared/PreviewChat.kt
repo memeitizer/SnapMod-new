@@ -1,7 +1,6 @@
 package xyz.rodit.snapmod.features.chatmenu.shared
 
 import android.app.AlertDialog
-import android.util.Base64
 import de.robv.android.xposed.XC_MethodHook
 import xyz.rodit.snapmod.arroyo.followProtoString
 import xyz.rodit.snapmod.createDummyProxy
@@ -9,8 +8,6 @@ import xyz.rodit.snapmod.features.FeatureContext
 import xyz.rodit.snapmod.mappings.*
 import xyz.rodit.snapmod.util.toSnapUUID
 import xyz.rodit.snapmod.util.toUUIDString
-import xyz.rodit.xposed.utils.StreamUtils
-import java.io.File
 
 fun previewChat(context: FeatureContext, key: String) {
     val uuid = key.toSnapUUID()
@@ -24,9 +21,13 @@ fun previewChat(context: FeatureContext, key: String) {
         DefaultFetchConversationCallback.onFetchConversationWithMessagesComplete
     ) { displayPreview(context, it) }
 
+
+    val fetchCallback = DefaultFetchConversationCallback(null, uuid, false);
+    fetchCallback.dummy = proxy
+
     context.instances.conversationManager.fetchConversationWithMessages(
         uuid,
-        DefaultFetchConversationCallback(proxy, uuid, false)
+        fetchCallback
     )
 }
 
