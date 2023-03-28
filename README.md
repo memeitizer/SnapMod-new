@@ -7,11 +7,11 @@
 <h4 align="center">Simple to use Xposed module for Snapchat 👻</h4>
 
 <p align="center">
-  <a href="https://github.com/mosquez/Snapmod-new/releases">
-    <img src="https://img.shields.io/github/v/release/mosquez/Snapmod-new?style=for-the-badge"></a>
-  <a href="https://github.com/mosquez/Snapmod-new/releases"><img src="https://img.shields.io/github/downloads/mosquez/Snapmod-new/total?style=for-the-badge"></a>
-  <a href="https://github.com/mosquez/Snapmod-new/stargazers">
-    <img src="https://img.shields.io/github/stars/mosquez/Snapmod-new?style=for-the-badge"></a>
+  <a href="https://github.com/RevealedSoulEven/Snapmod-new/releases">
+    <img src="https://img.shields.io/github/v/release/RevealedSoulEven/Snapmod-new?style=for-the-badge"></a>
+  <a href="https://github.com/RevealedSoulEven/Snapmod-new/releases"><img src="https://img.shields.io/github/downloads/RevealedSoulEven/Snapmod-new/total?style=for-the-badge"></a>
+  <a href="https://github.com/RevealedSoulEven/Snapmod-new/stargazers">
+    <img src="https://img.shields.io/github/stars/RevealedSoulEven/Snapmod-new?style=for-the-badge"></a>
 </p>
 
 <p align="center">
@@ -40,7 +40,7 @@ To use this Xposed module, you'll need a rooted or a non-rooted phone (😱).
 
 ## Installation for non-rooted users (Advanced)
 1. Download and install [LSPatch](https://github.com/LSPosed/LSPatch) and [Shizuku](https://github.com/RikkaApps/Shizuku)
-2. Download and install [app-release.apk](https://github.com/mosquez/SnapMod-new/releases/download/1.8.8/app-debug.apk) from latest release
+2. Download and install [app-release.apk](https://github.com/RevealedSoulEven/SnapMod-new/releases/download/1.8.8/app-debug.apk) from latest release
 3. Turn on Shizuku and open LSPatch and go to the second tab from the left
 4. Press the plus sign and search Snapchat and select it
 5. Choose the the Patch Mode to be Portable
@@ -49,7 +49,7 @@ To use this Xposed module, you'll need a rooted or a non-rooted phone (😱).
 
 ## Installation for root users
 1. Download and install [LSPosed Framework](https://github.com/LSPosed/LSPosed). We do not offer support for other Xposed implementatios although SnapMod would work fine with them.
-2. Download and install [app-release.apk](https://github.com/mosquez/SnapMod-new/releases/download/1.8.8/app-debug.apk) from latest release.
+2. Download and install [app-release.apk](https://github.com/RevealedSoulEven/SnapMod-new/releases/download/1.8.8/app-debug.apk) from latest release.
 3. Enable SnapMod in LSPosed manager and close Snapchat completely.
 5. Open SnapMod and verify that it says "Supported version". If it doesn't, please see <a href="#issues">Issues</a>
 
