@@ -3,7 +3,7 @@ package xyz.rodit.snapmod.features.conversations
 import xyz.rodit.snapmod.features.Feature
 import xyz.rodit.snapmod.features.FeatureContext
 import xyz.rodit.snapmod.logging.log
-import xyz.rodit.snapmod.mappings.ArroyoConvertMessagesAction
+import xyz.rodit.snapmod.mappings.ArroyoMessageListDataProvider
 import xyz.rodit.snapmod.mappings.ChatCommandSource
 import xyz.rodit.snapmod.mappings.Message
 import xyz.rodit.snapmod.util.*
@@ -18,7 +18,7 @@ class AutoSave(context: FeatureContext) : Feature(context, 84608.toMax()) {
     }
 
     override fun performHooks() {
-        ArroyoConvertMessagesAction.apply.before {
+        ArroyoMessageListDataProvider.apply.before {
             if (it.args[0] !is List<*>) return@before
             if (context.instances.chatCommandsClient.isNull) {
                 log.debug("Cannot auto-save messages. Chat commands client was null.")

@@ -1,15 +1,16 @@
 package xyz.rodit.snapmod.features.chatmenu
 
+import de.robv.android.xposed.XposedBridge
+import xyz.rodit.snapmod.CustomResources.string.menu_option_anti_auto_save
 import xyz.rodit.snapmod.CustomResources.string.menu_option_auto_download
 import xyz.rodit.snapmod.CustomResources.string.menu_option_auto_save
 import xyz.rodit.snapmod.CustomResources.string.menu_option_stealth_mode
-import xyz.rodit.snapmod.CustomResources.string.menu_option_anti_auto_save
 import xyz.rodit.snapmod.Shared
 import xyz.rodit.snapmod.features.Feature
 import xyz.rodit.snapmod.features.FeatureContext
+import xyz.rodit.snapmod.mappings.FeedInfoHolder
 import xyz.rodit.snapmod.mappings.FriendChatActionHandler
 import xyz.rodit.snapmod.mappings.FriendChatActionMenuBuilder
-import xyz.rodit.snapmod.mappings.RxSingleton
 import xyz.rodit.snapmod.mappings.SendChatAction
 import xyz.rodit.snapmod.util.after
 import xyz.rodit.snapmod.util.before
@@ -48,13 +49,18 @@ class ChatMenuModifier(context: FeatureContext) : Feature(context) {
 
     override fun performHooks() {
         // Add plugin actions to chat action menu.
-        FriendChatActionMenuBuilder.build.after {
+        FriendChatActionMenuBuilder.call.after {
             val self = FriendChatActionMenuBuilder.wrap(it.thisObject)
-            val key = self.feedInfoHolder.info.key
-            val options = RxSingleton.wrap(it.result).value as MutableList<Any>
+            if (!FeedInfoHolder.isInstance(self.feedInfoHolder) || it.result !is ArrayList<*>) return@after
 
-            options.addAll(
-                plugins.values.filter(MenuPlugin::shouldCreate).map { p -> p.createModel(key) })
+            val options = it.result as ArrayList<Any>
+            val key = FeedInfoHolder.wrap(self.feedInfoHolder).feedKey
+
+            val subOptions = plugins.values.filter(MenuPlugin::shouldCreate).map { p ->
+                p.createModel(key)
+            }
+
+            options.addAll(subOptions);
         }
 
         // Override plugin action events.

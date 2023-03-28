@@ -13,14 +13,13 @@ abstract class ButtonOption(context: FeatureContext, name: String, private val t
         return ActionMenuOptionItemViewModel(
             textViewModel,
             ActionMenuActionModel(arrayOf(action.instance)),
-            0,
             null,
             null,
             null,
             null,
-            false,
             null,
-            ActionMenuOptionItemType.OPTION_ITEM()
+            ActionMenuOptionItemType.OPTION_ITEM(),
+            0
         ).instance
     }
 }
