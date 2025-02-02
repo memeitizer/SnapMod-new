@@ -22,17 +22,13 @@ jobs:
           cache: gradle
 
       - name: Download Snapchat APK
-        run: wget -q -O snapchat.apk "$APK_URL"
-        env:
-          APK_URL: ${{ secrets.APK_URL }}
-
+        run: wget -q -O snapchat.apk "https://www.apkmirror.com/wp-content/themes/APKMirror/download.php?id=8253908&key=da7d83e9365b1be9acd1e40f96428e6a81843fa9&forcebaseapk=true"
+      
       - name: Download dexsearch and clientlib
         run: |
-          wget -q -O dexsearch.jar "https://github.com/rodit/dexsearch/releases/download/$DEXSEARCH_VERSION/dexsearch-latest.jar"
-          wget -q -O app/libs/clientlib.jar "https://github.com/rodit/dexsearch/releases/download/$DEXSEARCH_VERSION/clientlib-latest.jar"
-        env:
-          DEXSEARCH_VERSION: ${{ secrets.DEXSEARCH_VERSION }}
-
+          wget -q -O dexsearch.jar "https://github.com/rodit/dexsearch/releases/download/v1.0.7/dexsearch-latest.jar"
+          wget -q -O app/libs/clientlib.jar "https://github.com/rodit/dexsearch/releases/download/v1.0.7/clientlib-latest.jar"
+        
       - name: Download Android Platform
         run: |
           wget -q -O android.zip "https://dl.google.com/android/repository/platform-32_r01.zip"
