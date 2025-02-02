@@ -6,7 +6,7 @@ on:
 
 jobs:
   publish:
-    name: Release Debug APK
+    name: Release Debugg APK
     runs-on: ubuntu-latest
     steps:
 
