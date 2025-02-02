@@ -1,6 +1,6 @@
 <h1 align="center">
   <br>
-  SnapMod
+  SnapMod2
   <br>
 </h1>
 
