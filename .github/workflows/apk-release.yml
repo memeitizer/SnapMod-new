@@ -3,10 +3,11 @@ on:
   push:
     tags:
       - "v*"
+  workflow_dispatch:
 
 jobs:
   publish:
-    name: Release Debugg APK
+    name: Release Debug APK
     runs-on: ubuntu-latest
     steps:
 
